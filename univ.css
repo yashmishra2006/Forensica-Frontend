@@ -1,5 +1,3 @@
-/* styles.css - Sleek Complex Hacker Aesthetic */
-
 body {
   margin: 0;
   font-family: 'Fira Code', monospace;
@@ -132,7 +130,7 @@ body {
   line-height: 1.6;
 }
 
-/* Glowing header */
+/* header */
 header {
   background: rgba(0, 20, 10, 0.95);
   padding: 1.25rem 2rem;
@@ -182,7 +180,7 @@ nav a:hover {
   color: #00ffcc;
 }
 
-/* Main container with layered panels */
+/* Main container */
 main {
   max-width: 1200px;
   margin: 3rem auto;
@@ -196,7 +194,6 @@ main {
   animation: fadeIn 0.6s ease-in-out;
 }
 
-/* Headers */
 h2 {
   font-size: 2rem;
   color: #00ffcc;
@@ -206,14 +203,12 @@ h2 {
   padding-left: 1rem;
 }
 
-/* Paragraphs */
 p {
   color: #c2ffc2;
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
 }
 
-/* Result cards with a techy glow */
 .result-card {
   background-color: rgba(0, 26, 13, 0.9);
   border: 1px solid rgba(0, 255, 136, 0.2);
@@ -247,7 +242,7 @@ p {
   color: #88ffcc;
 }
 
-/* Inputs & Upload */
+
 input[type="file"],
 input[type="text"],
 button,
@@ -284,7 +279,6 @@ input[type="file"]:hover {
   background-color: #003322;
 }
 
-/* Buttons */
 button {
   background-color: #00ffcc;
   color: #001f16;
@@ -299,7 +293,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Label Styling */
+
 label {
   font-weight: 600;
   color: #aaffaa;
@@ -307,7 +301,7 @@ label {
   display: inline-block;
 }
 
-/* Dropdown styling */
+
 select {
   background-image: url("data:image/svg+xml;utf8,<svg fill='lime' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M5.516 7.548a.75.75 0 011.06 0L10 10.97l3.424-3.423a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 010-1.06z'/></svg>");
   background-repeat: no-repeat;
@@ -316,7 +310,6 @@ select {
   appearance: none;
 }
 
-/* Fade-in animation */
 @keyframes fadeIn {
   0% {
     opacity: 0;

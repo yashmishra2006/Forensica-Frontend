@@ -10,7 +10,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <h1>🕵️‍♀️ Forensica</h1>
     <nav>
@@ -21,18 +20,15 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
   <main class="main-section">
     <h2 class="heading">🔍 Search Extracted Keywords</h2>
     <p class="description">Use this tool to search specific terms across all parsed content extracted from uploaded devices. Filter by file types for deeper inspection.</p>
 
-    <!-- Search Bar -->
     <div class="mb-6">
       <input id="searchInput" type="text" placeholder="Type a keyword to search..." class="input-box"/>
       <p id="resultCount" class="result-counter">0 results found</p>
     </div>
 
-    <!-- File Type Filter -->
     <div class="mb-6">
       <label for="fileType">Filter by File Type:</label>
       <select id="fileType">
@@ -43,14 +39,13 @@
       </select>
     </div>
 
-    <!-- Results Container -->
     <div id="keywordResults"></div>
 
-    <!-- Go to Full Results -->
+
     <button id="goToResults" class="results-button">→ See Full Keyword Report</button>
   </main>
 
-  <!-- Script -->
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
 
