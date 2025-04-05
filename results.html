@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forensica - Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="univ.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>🕵️‍♀️ Forensica</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="results.html" class="active">Results</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Results Section -->
+  <main>
+    <h2>📄 Extracted Data Results</h2>
+    <p>Here are the summarized findings from the device forensic scan, sorted by relevance, file type, and sensitivity.</p>
+
+    <div class="result-card">
+      <h3>Found Keyword: <span>password</span></h3>
+      <p>Source: user_data.txt | Confidence: 98% | Context: "my email password is..."</p>
+    </div>
+
+    <div class="result-card">
+      <h3>Found Keyword: <span>bank</span></h3>
+      <p>Source: transaction.pdf | Confidence: 93% | Context: "account balance in bank of..."</p>
+    </div>
+
+    <div class="result-card">
+      <h3>Found Keyword: <span>private</span></h3>
+      <p>Source: notes.docx | Confidence: 89% | Context: "keep this information private and confidential..."</p>
+    </div>
+  </main>
+</body>
+</html>

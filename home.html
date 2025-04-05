@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forensica - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="univ.css">
+  <style>
+    #progressContainer {
+      width: 100%;
+      background-color: #eee;
+      border-radius: 5px;
+      margin-top: 15px;
+      display: none;
+    }
+
+    #progressBar {
+      width: 0%;
+      height: 25px;
+      background-color: #4CAF50;
+      text-align: center;
+      color: white;
+      line-height: 25px;
+      border-radius: 5px;
+    }
+
+    button:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>🕵️‍♀️ Forensica</h1>
+    <nav>
+      <a href="home.html" class="active">Home</a>
+      <a href="search.html">Search</a>
+      <a href="results.html">Results</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Home Content -->
+  <main>
+    <h2>📁 Upload Files for Analysis</h2>
+    <p>Select a .zip, .csv, or .json file to begin forensic analysis.</p>
+
+    <input type="file" id="fileInput" />
+    <p id="fileName">No file selected.</p>
+
+    <button id="startBtn" disabled>Start Analyzing</button>
+
+    <div id="progressContainer">
+      <div id="progressBar">0%</div>
+    </div>
+  </main>
+
+  <!-- Your JS goes here -->
+  <script src="home.js"></script>
+</body>
+</html>

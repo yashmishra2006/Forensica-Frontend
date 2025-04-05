@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forensica - Search Keywords</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="univ.css">
+  <style>
+    .dramatic-bg {
+      background: linear-gradient(to right, #1e3a8a, #0f172a);
+    }
+  </style>
+</head>
+<body class="dramatic-bg min-h-screen text-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white text-gray-800 p-4 flex justify-between items-center shadow">
+    <h1 class="text-2xl font-extrabold tracking-wide">🕵️‍♀️ Forensica</h1>
+    <nav class="space-x-4 text-sm">
+      <a href="home.html" class="hover:text-blue-700">Home</a>
+      <a href="search.html" class="text-blue-700 font-semibold">Search</a>
+      <a href="results.html" class="hover:text-blue-700">Results</a>
+      <a href="about.html" class="hover:text-blue-700">About</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 max-w-3xl mx-auto mt-12 bg-gray-900 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-yellow-300 mb-4">🔍 Search Extracted Keywords</h2>
+    <p class="text-gray-300 mb-6">Use this tool to search specific terms across all parsed content extracted from uploaded devices. Filter by file types for deeper inspection.</p>
+
+    <!-- Search Bar -->
+    <div class="mb-6">
+      <input id="searchInput" type="text" placeholder="Type a keyword to search..."
+        class="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"/>
+      <p id="resultCount" class="mt-2 text-sm text-gray-400 italic">0 results found</p>
+    </div>
+
+    <!-- File Type Filter -->
+    <div class="mb-6">
+      <label for="fileType" class="block text-sm text-gray-300 mb-2">Filter by File Type:</label>
+      <select id="fileType"
+        class="w-full p-2 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        <option value="all">All</option>
+        <option value="txt">TXT</option>
+        <option value="docx">DOCX</option>
+        <option value="pdf">PDF</option>
+      </select>
+    </div>
+
+    <!-- Results Container -->
+    <div id="keywordResults" class="space-y-2"></div>
+
+    <!-- Go to Full Results -->
+    <button id="goToResults"
+      class="mt-8 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">
+      → See Full Keyword Report
+    </button>
+  </main>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const keywordList = [
+        { word: "password", fileType: "txt" },
+        { word: "secret", fileType: "pdf" },
+        { word: "login", fileType: "docx" },
+        { word: "bank", fileType: "txt" },
+        { word: "transaction", fileType: "pdf" },
+        { word: "email", fileType: "docx" },
+        { word: "hidden", fileType: "txt" },
+        { word: "private", fileType: "docx" },
+        { word: "metadata", fileType: "pdf" },
+        { word: "location", fileType: "txt" }
+      ];
+
+      const resultContainer = document.getElementById("keywordResults");
+      const searchInput = document.getElementById("searchInput");
+      const fileTypeSelect = document.getElementById("fileType");
+      const resultCount = document.getElementById("resultCount");
+
+      function renderKeywords(filter = "", fileTypeFilter = "all") {
+        resultContainer.innerHTML = "";
+        let matches = 0;
+
+        keywordList.forEach(item => {
+          if (
+            item.word.includes(filter.toLowerCase()) &&
+            (fileTypeFilter === "all" || item.fileType === fileTypeFilter)
+          ) {
+            const keywordEl = document.createElement("div");
+            keywordEl.className = "bg-gray-800 p-3 rounded mb-2 border-l-4 border-yellow-400 text-left";
+            keywordEl.innerHTML = `📌 <span class="font-semibold">${item.word}</span> 
+              <span class="ml-2 text-sm text-gray-400">(${item.fileType.toUpperCase()})</span>`;
+            resultContainer.appendChild(keywordEl);
+            matches++;
+          }
+        });
+
+        resultCount.textContent = `${matches} result${matches !== 1 ? "s" : ""} found`;
+      }
+
+      searchInput.addEventListener("input", () => {
+        renderKeywords(searchInput.value, fileTypeSelect.value);
+      });
+
+      fileTypeSelect.addEventListener("change", () => {
+        renderKeywords(searchInput.value, fileTypeSelect.value);
+      });
+
+      document.getElementById("goToResults").addEventListener("click", () => {
+        window.location.href = "results.html";
+      });
+
+      renderKeywords();
+    });
+  </script>
+</body>
+</html>
