@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keyword Categories Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: radial-gradient(ellipse at top, #001611 0%, #000c0a 100%);
+      font-family: 'Fira Code', monospace;
+      color: #aaffaa;
+      overflow: hidden;
+    }
+
+    #chart-container {
+      height: 100vh;
+      width: 100vw;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart-container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    const labels = [
+      "Financial Fraud",
+      "Identity Theft",
+      "Weapons/Violence",
+      "Drugs/Illegal",
+      "Explicit Content",
+      "Terrorism Keywords",
+      "Surveillance Data",
+      "Encrypted/Hidden"
+    ];
+
+    const labelLinks = {
+      "Financial Fraud": "fraud.html",
+      "Identity Theft": "identity.html",
+      "Weapons/Violence": "violence.html",
+      "Drugs/Illegal": "drugs.html",
+      "Explicit Content": "explicit.html",
+      "Terrorism Keywords": "terrorism.html",
+      "Surveillance Data": "surveillance.html",
+      "Encrypted/Hidden": "encrypted.html"
+    };
+
+    const initialData = [12, 9, 5, 8, 6, 4, 10, 7];
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Sensitive Keyword Categories',
+        data: initialData,
+        backgroundColor: [
+          '#00ffcc', '#00e6b8', '#00ccaa', '#00b39c',
+          '#00998d', '#00807f', '#006670', '#004d61'
+        ],
+        borderColor: '#00ffcc',
+        borderWidth: 1,
+        hoverBackgroundColor: '#39ff14', // Neon green hover
+        hoverBorderColor: '#ffffff',
+        hoverBorderWidth: 2
+      }]
+    };
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        onClick: (event, elements) => {
+          if (elements.length > 0) {
+            const index = elements[0].index;
+            const label = data.labels[index];
+            const targetPage = labelLinks[label];
+            if (targetPage) {
+              window.open(targetPage, '_blank');
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#aaffaa',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            },
+            grid: {
+              color: 'rgba(0, 255, 136, 0.1)'
+            }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: '#aaffaa',
+              font: {
+                size: 14
+              }
+            },
+            title: {
+              display: true,
+              text: 'Keyword Frequency',
+              color: '#00ffcc'
+            },
+            grid: {
+              color: 'rgba(0, 255, 136, 0.1)'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#00ffcc',
+              font: {
+                size: 14
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.label}: ${context.raw}`;
+              }
+            }
+          }
+        },
+        animation: {
+          duration: 700,
+          easing: 'easeOutElastic'
+        },
+        hover: {
+          mode: 'index',
+          intersect: false
+        }
+      }
+    });
+
+    // Simulate real-time update
+    setInterval(() => {
+      myChart.data.datasets[0].data = myChart.data.datasets[0].data.map(value =>
+        value + Math.floor(Math.random() * 3)
+      );
+      myChart.update();
+    }, 4000);
+  </script>
+</body>
+</html>
