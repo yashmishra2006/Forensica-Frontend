@@ -46,9 +46,9 @@
   <!-- Home Content -->
   <main>
     <h2>📁 Upload Files for Analysis</h2>
-    <p>Select a .zip, .csv, or .json file to begin forensic analysis.</p>
+    <p>Select a .zip, .csv, .json, .docx or .txt file to begin forensic analysis.</p>
 
-    <input type="file" id="fileInput" />
+    <input type="file" id="fileInput" accept=".zip,.csv,.json,.docx,.txt" />
     <p id="fileName">No file selected.</p>
 
     <button id="startBtn" disabled>Start Analyzing</button>
@@ -58,7 +58,68 @@
     </div>
   </main>
 
-  <!-- Your JS goes here -->
-  <script src="home.js"></script>
+<!-- Script -->
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const fileInput = document.getElementById("fileInput");
+  const fileNameDisplay = document.getElementById("fileName");
+  const startBtn = document.getElementById("startBtn");
+  const progressBar = document.getElementById("progressBar");
+  const progressContainer = document.getElementById("progressContainer");
+
+  let selectedFile = null;
+
+  fileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const validTypes = [
+      "application/zip",
+      "text/csv",
+      "application/json",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "text/plain"
+    ];
+
+    const validExtensions = [".zip", ".csv", ".json", ".docx", ".txt"];
+
+    const isValidType = validTypes.includes(file.type);
+    const isValidExtension = validExtensions.some(ext => file.name.toLowerCase().endsWith(ext));
+
+    if (!isValidType && !isValidExtension) {
+      alert("❌ Invalid file type. Please upload a .zip, .csv, .json, .docx, or .txt file.");
+      fileInput.value = "";
+      fileNameDisplay.textContent = "No file selected.";
+      selectedFile = null;
+      startBtn.disabled = true;
+      return;
+    }
+
+    selectedFile = file;
+    fileNameDisplay.textContent = `📁 ${file.name}`;
+    startBtn.disabled = false;
+  });
+
+  startBtn.addEventListener("click", () => {
+    if (!selectedFile) return;
+
+    startBtn.disabled = true;
+    progressContainer.style.display = "block";
+
+    let width = 0;
+
+    const interval = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(interval);
+        window.location.href = "results.html";
+      } else {
+        width += 2;
+        progressBar.style.width = width + "%";
+        progressBar.textContent = width + "%";
+      }
+    }, 80);
+  });
+});
+</script>
 </body>
 </html>
