@@ -12,12 +12,12 @@
       background-color: transparent;  /* Make background transparent */
       border-radius: 10px;
       margin: 20px auto;
-      max-width: 900px;
+      max-width: 1000px; /* Increased container width */
     }
 
     canvas#myChart {
       width: 100%;
-      height: 400px;
+      height: 500px; /* Increased height of the chart */
     }
 
     /* Add some spacing around the chart */
@@ -57,7 +57,7 @@
       }
 
       canvas#myChart {
-        height: 300px;
+        height: 400px; /* Adjusted for smaller screens */
       }
     }
 
@@ -211,6 +211,14 @@
 
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, config);
+
+    // // Simulate real-time updates
+    // setInterval(() => {
+    //   myChart.data.datasets[0].data = myChart.data.datasets[0].data.map(value =>
+    //     value + Math.floor(Math.random() * 3)
+    //   );
+    //   myChart.update();
+    // }, 4000);
   </script>
 </body>
 </html>
