@@ -129,7 +129,6 @@ button:hover:enabled {
   border-radius: 5px;
 }
 
-/* header */
 header {
   background: rgba(0, 20, 10, 0.95);
   padding: 1.25rem 2rem;
@@ -179,7 +178,6 @@ nav a:hover {
   color: #00ffcc;
 }
 
-/* Main container */
 main {
   max-width: 1200px;
   margin: 3rem auto;
