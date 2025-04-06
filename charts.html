@@ -117,19 +117,15 @@ canvas#myChart {
     };
 
     const initialData = [12, 9, 5, 8, 6, 4, 10, 7];
-
     const data = {
-      labels: labels,
-      datasets: [{
-        data: initialData,
-        backgroundColor: [
-          '#00ffcc', '#00e6b8', '#00ccaa', '#00b39c',
-          '#00998d', '#00807f', '#006670', '#004d61'
-        ],
-        borderColor: '#00ffcc',
-        borderWidth: 1
-      }]
-    };
+  labels: labels,
+  datasets: [{
+    data: initialData,
+    backgroundColor: '#004d40', // Constant, darker green-teal color
+    borderColor: '#00ffcc',
+    borderWidth: 1
+  }]
+};
 
     const config = {
       type: 'bar',
